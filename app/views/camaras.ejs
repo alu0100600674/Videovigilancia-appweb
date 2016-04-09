@@ -1,0 +1,60 @@
+<% include _head.ejs %>
+<body ng-controller="CamarasCtrl">
+<% include _navbar.ejs %>
+
+<link href="lib/videojs/video-js.css" rel="stylesheet">
+<link href="css/customvideo.css" rel="stylesheet">
+<!-- If you'd like to support IE8 -->
+<script src="lib/videojs/videojs-ie8.min.js"></script>
+<script src="lib/videojs/video.js"></script>
+<div class="container">
+    <div class="row">
+        <br><br>
+        <h1 class="center indigo-text"> Lista de las cámaras activas </h1>
+        <br>
+    </div>
+    <div class="row">
+        <div class="col m3 s3">
+            <div class="collection" ng-repeat="camara in camaras">
+                <a ng-click="scrollTo(camara._id)" href="" class="collection-item">{{camara.name}}</a>
+            </div>
+        </div>
+        <div class="col m9 s9">
+            <div class="container">
+                <div class="row">
+                    <div ng-repeat="camara in camaras" class="repeat-item animated">
+                        <div class="card" ng-attr-id="{{'camara-'+camara._id}}">
+                            <div class="card waves-effect waves-block waves-light z-depth-3 hoverable">
+                                <div class="card-content">
+                                    <div class="row">
+                                        <video  ng-attr-id="{{'video-'+camara._id}}" class="video-js vjs-default-skin responsive-video"
+                                               autoplay="true" preload="none" width="440" height="464" data-setup='{}'>
+                                            <source ng-src="{{camara.server}}" type='rtmp/mp4'>
+                                            <p class="vjs-no-js"> To view this video please enable JavaScript </p>
+                                        </video>
+                                    </div>
+                                </div>
+                                <div class="card-action">
+                                    <span class="card-title grey-text text-darken-4">
+                                        {{camara.name}}
+                                    </span>
+                                          <span class="card-title grey-text text-darken">
+                                        {{camara.server}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript">
+
+
+</script>
+<% include _footer.ejs %>
+</body>
+</html>

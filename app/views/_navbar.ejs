@@ -1,0 +1,22 @@
+<nav>
+    <div class="nav-wrapper indigo">
+        <ul class="left">
+            <li> <a href="/"> <img id="logo" src="img/logo.png" width="50px"> </a> </li>
+            <li> <a href="/"> Airport Video Surveillance </a> </li>
+        </ul>
+        <ul class="right hide-on-med-and-down">
+            <li><a href="/live">Live<span class="live badge_custom">{{livecounter}} </span></a></li>
+            <!--<li><a href="/addcamara">Add Camara</a></li>-->
+            <!-- Dropdown Trigger -->
+            <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Camaras<i class="material-icons right">arrow_drop_down</i></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!-- Dropdown Structure -->
+<ul id="dropdown1" class="dropdown-content">
+    <li><a href="/listcamaras">List</a></li>
+    <li class="divider"></li>
+    <li><a href="/addcamara">Add</a></li>
+</ul>
+<!--<li ng-class="{active:isActive('sass')}" ><a href="sass.html">Sass</a></li>-->

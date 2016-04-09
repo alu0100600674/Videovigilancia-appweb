@@ -1,0 +1,25 @@
+{
+    "name": "Streaming",
+    "version": "0.1.0",
+    "scripts": {
+        "start": "node app"
+    },
+    "dependencies": {
+        "express": "*",
+        "mongoose": "*",
+        "node-gcm": "*",
+        "underscore": "*",
+        "request": "*",
+        "morgan": "*",
+        "method-override": "*",
+        "express-session": "*",
+        "body-parser": "*",
+        "errorhandler": "*",
+        "passport": "*",
+        "moment": "~2.4.0",
+        "formidable": "*"
+    },
+    "description": "Streaming Server",
+    "repository" : "Bitbucket"
+
+}

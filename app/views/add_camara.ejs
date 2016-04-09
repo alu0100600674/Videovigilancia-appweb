@@ -1,0 +1,46 @@
+<% include _head.ejs %>
+<body ng-controller="addCamara">
+<% include _navbar.ejs %>
+<script type="text/javascript" src="lib/jplayer/jquery.jplayer.js"></script>
+<link href="lib/jplayer/pink.flag/css/jplayer.pink.flag.min.css" rel="stylesheet" type="text/css"/>
+
+<div class="container">
+    <div class="row">
+        <br><br>
+        <h1 class="center indigo-text"> Añadir nueva cámara </h1>
+        <br>
+    </div>
+    <div class="row">
+        <div class="col m8 s8">
+            <form novalidate role="form" class="simple-form" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col m10 s10 input-field" >
+                            <input id="mac_name" ng-model="camara.name" type="text" class="form-control"  type="text" class="validate" length="17">
+                        <label for="mac_name" data-error="wrong" data-success="right">Put MAC</label>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col m10 s10 input-field">
+                            <input id="link_server" ng-model="camara.server" type="text" class="form-control" type="text" class="validate">
+                            <label for="link_server" data-error="wrong" data-success="right">Link of streaming</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <button type="submit" ng-click="send()" class="btn btn-success">Submit</button>
+                    </div>
+                </div>
+            </form>
+            <div ng-show="success">
+                <div class="alert alert-success">
+                    <p>Camara generado con éxito</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include _footer.ejs %>
+</body>
+</html>

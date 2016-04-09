@@ -1,0 +1,58 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+/** Badges **/
+
+span.badge_custom {
+    min-width: 3rem;
+    padding: 0 6px;
+    text-align: center;
+    font-size: 1rem;
+    line-height: inherit;
+    color: #757575;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+span.badge_custom.new {
+    font-weight: 300;
+    font-size: 0.8rem;
+    color: #fff;
+    background-color: #26a69a;
+    border-radius: 2px;
+}
+
+span.badge_custom.new:after {
+    content: " new";
+}
+
+span.badge_custom.live {
+    font-weight: 300;
+    font-size: 0.8rem;
+    color: #fff;
+    background-color: #26a69a;
+    border-radius: 2px;
+}
+
+span.badge_custom.live:after {
+    content: "Live";
+}
+
+nav ul a span.badge_custom {
+    position: static;
+    margin-left: 4px;
+    line-height: 0;
+}
+
+#badge_table{
+    margin-top: -5px;
+}
+
