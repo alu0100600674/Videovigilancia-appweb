@@ -17,6 +17,13 @@
     text-shadow: 5px 0 0 #000;
 }
 
+.v-letra-subtitulo{
+    font-family: Revalia;
+    font-size: 35px;
+    color: black !important;
+    text-decoration: underline;
+}
+
 .v-letra-menu{
     font-family: Montserrat !important;
 }
