@@ -28,6 +28,10 @@
     font-family: Montserrat !important;
 }
 
+.v-tabla-center *{
+    text-align: center;
+}
+
 body{
     font-family: 'Josefin Sans' !important;
 
