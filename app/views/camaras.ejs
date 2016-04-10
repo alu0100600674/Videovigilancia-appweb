@@ -33,7 +33,7 @@
                                 <div class="card-content">
                                     <div class="row">
                                         <video  ng-attr-id="{{'video-'+camara._id}}" class="video-js vjs-default-skin responsive-video"
-                                               autoplay="true" preload="none" width="440" height="464" data-setup='{}'>
+                                               autoplay="true" preload="none" width="440" height="248" data-setup='{}'>
                                             <source ng-src="{{camara.server}}" type='rtmp/mp4'>
                                             <p class="vjs-no-js"> To view this video please enable JavaScript </p>
                                         </video>
@@ -43,9 +43,9 @@
                                     <span class="card-title grey-text text-darken-4">
                                         {{camara.name}}
                                     </span>
-                                          <span class="card-title grey-text text-darken">
+                                    <!-- <span class="card-title grey-text text-darken">
                                         {{camara.server}}
-                                    </span>
+                                    </span> -->
                                 </div>
                             </div>
                         </div>
