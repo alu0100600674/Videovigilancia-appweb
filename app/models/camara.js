@@ -5,6 +5,7 @@ var mongoose = require('mongoose'),
 var camaraSchema = new Schema({
     server: String,
     name:  String,
+    ip: String,
     online: { type: Boolean, default: false }
 });
 

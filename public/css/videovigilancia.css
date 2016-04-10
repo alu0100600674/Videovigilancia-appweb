@@ -54,3 +54,15 @@ body{
     padding-top: 0px !important;
     padding-bottom: 0px !important;
 }
+
+.v-robot{
+    width: 440px;
+    padding-left: 20px;
+    text-align: center;
+}
+
+.btn-robot{
+    width: 45px;
+    height: 45px;
+    margin-bottom: 3px;
+}

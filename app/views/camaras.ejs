@@ -39,9 +39,19 @@
                                         </video>
                                     </div>
                                 </div>
+                                <div class="v-robot">
+                                    <button id="up" class="btn-robot" onclick="enviarMsg('legoev3arriba')"><i class="fa fa-arrow-up fa-2x"></i></button>
+                                    <div class="vacio"></div>
+                                    <button id="left" class="btn-robot" onclick="enviarMsg('legoev3izquierda')"><i class="fa fa-arrow-left fa-2x"></i></button>
+                                    <button id="down" class="btn-robot" onclick="enviarMsg('legoev3abajo')"><i class="fa fa-arrow-down fa-2x"></i></button>
+                                    <button id="right" class="btn-robot" onclick="enviarMsg('legoev3derecha')"><i class="fa fa-arrow-right fa-2x"></i></button>
+                                </div>
                                 <div class="card-action v-camara-nombre">
                                     <span class="card-title grey-text text-darken-4">
                                         {{camara.name}}
+                                    </span>
+                                    <span class="card-title grey-text text-darken-4" style="margin-left:10px">
+                                        ({{camara.ip}})
                                     </span>
                                     <!-- <span class="card-title grey-text text-darken">
                                         {{camara.server}}

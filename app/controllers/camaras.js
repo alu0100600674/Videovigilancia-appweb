@@ -70,11 +70,12 @@ exports.delete = function (request, response) {
 exports.new = function (request, response) {
     if ( Utilities.isEmpty(request.body.name)) return response.send(error_400);
     if ( Utilities.isEmpty(request.body.server)) return response.send(error_400);
+    if ( Utilities.isEmpty(request.body.ipcamara)) return response.send(error_400);
     Camara.find({name: request.body.name}).exec(function (err, camaras) {
         if (err) return response.send(error);
         if (!Utilities.isEmpty(camaras)) return response.send(error);
         var server = "rtmp://" + request.body.server + request.body.name;
-        var camaranueva = new Camara({ server: server, name: request.body.name});
+        var camaranueva = new Camara({ server: server, name: request.body.name, ip: request.body.ipcamara});
         camaranueva.save();
         response.send(ok);
     });
@@ -113,4 +114,3 @@ exports.putoffline = function (request, response) {
         response.send(ok);
     });
 };
-
