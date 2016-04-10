@@ -45,6 +45,11 @@ body{
 }
 
 /* Zona de las camaras */
+.v-camara-todo{
+    width: 458px;
+    height: 415px;
+}
+
 .v-camara-video{
     padding-top: 5px !important;
     padding-bottom: 0px !important;
