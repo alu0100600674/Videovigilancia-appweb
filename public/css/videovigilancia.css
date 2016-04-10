@@ -1,3 +1,7 @@
+body{
+    font-family: 'Josefin Sans' !important;
+}
+
 .v-menu{
     background-color: #9c9c9c !important;
 }
@@ -40,7 +44,13 @@
     width: 100%;*/
 }
 
-body{
-    font-family: 'Josefin Sans' !important;
+/* Zona de las camaras */
+.v-camara-video{
+    padding-top: 5px !important;
+    padding-bottom: 0px !important;
+}
 
+.v-camara-nombre{
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
 }
