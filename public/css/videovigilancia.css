@@ -47,7 +47,8 @@ body{
 /* Zona de las camaras */
 .v-camara-todo{
     width: 458px;
-    height: 415px;
+    /*height: 415px;*/
+    height: 450px;
 }
 
 .v-camara-video{
@@ -70,4 +71,13 @@ body{
     width: 45px;
     height: 45px;
     margin-bottom: 3px;
+}
+
+.v-vel{
+    width: 100px !important;
+    margin-right: 25px !important;
+}
+
+.v-tiempo{
+    width: 100px !important;
 }
