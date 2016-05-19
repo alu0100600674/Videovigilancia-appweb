@@ -129,10 +129,6 @@ exports.putoffline = function (request, response) {
 
 /* Comandos de robot */
 exports.enviarComando = function (request, response) {
-    // console.log("aaaaa");
-    // client.write("enviarComando\n");
-    // console.log("bbbbb");
-
     switch(request.body.movimiento){
         case 'rleft':
             client.write('legoev3rotarizquierda-' + request.body.vel + '-' + request.body.tiempo + '\n');
@@ -153,7 +149,4 @@ exports.enviarComando = function (request, response) {
             client.write('legoev3derecha-' + request.body.vel + '-' + request.body.tiempo + '\n');
             break;
     }
-
-
-    console.log(request.body);
 }
