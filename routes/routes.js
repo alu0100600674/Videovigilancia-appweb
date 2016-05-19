@@ -26,6 +26,8 @@ module.exports = function (app) {
     app.put('/online/:name', camaras.putonline); // poner una cámara onLive
     app.put('/offline/:name', camaras.putoffline); // poner una cámara offLive
 
+    app.post('/robot', camaras.enviarComando); // Enviar comando para el robot
+
 
 //    //petición get para acceder a la página de login
 //    app.get('/login', utilities.index);

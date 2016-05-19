@@ -9,6 +9,12 @@ var Utilities = require('./utilities');
 var error = {'response' : 404};
 var error_400 = {'response' : 400};
 var ok = {'response' : 201};
+
+/* Robot */
+var net = require('net');
+var client = net.connect(1234, "192.168.1.36");
+client.write("conectado\n");
+
 /* Views Responce */
 exports.index = function (req, res) {
     res.render('camaras');
@@ -99,6 +105,12 @@ exports.putonline = function (request, response) {
         if (Utilities.isEmpty(camara)) return response.send(error_400);
         camara[0].online = true;
         camara[0].save();
+
+        // Establecer conexión con el socket para el control del robot
+        // net = require('net');
+        // client = net.connect(1234, "10.159.0.89");
+        // client.write("conectado\n");
+
         response.send(ok);
     });
 };
@@ -114,3 +126,34 @@ exports.putoffline = function (request, response) {
         response.send(ok);
     });
 };
+
+/* Comandos de robot */
+exports.enviarComando = function (request, response) {
+    // console.log("aaaaa");
+    // client.write("enviarComando\n");
+    // console.log("bbbbb");
+
+    switch(request.body.movimiento){
+        case 'rleft':
+            client.write('legoev3rotarizquierda-' + request.body.vel + '-' + request.body.tiempo + '\n');
+            break;
+        case 'up':
+            client.write('legoev3arriba-' + request.body.vel + '-' + request.body.tiempo + '\n');
+            break;
+        case 'rright':
+            client.write('legoev3rotarderecha-' + request.body.vel + '-' + request.body.tiempo + '\n');
+            break;
+        case 'left':
+            client.write('legoev3izquierda-' + request.body.vel + '-' + request.body.tiempo + '\n');
+            break;
+        case 'down':
+            client.write('legoev3abajo-' + request.body.vel + '-' + request.body.tiempo + '\n');
+            break;
+        case 'right':
+            client.write('legoev3derecha-' + request.body.vel + '-' + request.body.tiempo + '\n');
+            break;
+    }
+
+
+    console.log(request.body);
+}
