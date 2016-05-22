@@ -10,11 +10,6 @@ var error = {'response' : 404};
 var error_400 = {'response' : 400};
 var ok = {'response' : 201};
 
-/* Robot */
-var net = require('net');
-var client = net.connect(1234, "192.168.1.36");
-client.write("conectado\n");
-
 /* Views Responce */
 exports.index = function (req, res) {
     res.render('camaras');
@@ -105,12 +100,6 @@ exports.putonline = function (request, response) {
         if (Utilities.isEmpty(camara)) return response.send(error_400);
         camara[0].online = true;
         camara[0].save();
-
-        // Establecer conexión con el socket para el control del robot
-        // net = require('net');
-        // client = net.connect(1234, "10.159.0.89");
-        // client.write("conectado\n");
-
         response.send(ok);
     });
 };
@@ -131,22 +120,46 @@ exports.putoffline = function (request, response) {
 exports.enviarComando = function (request, response) {
     switch(request.body.movimiento){
         case 'rleft':
+            var net = require('net');
+            var client = net.connect(1234, request.body.ip);
             client.write('legoev3rotarizquierda-' + request.body.vel + '-' + request.body.tiempo + '\n');
+            client.end();
             break;
         case 'up':
+            var net = require('net');
+            var client = net.connect(1234, request.body.ip);
             client.write('legoev3arriba-' + request.body.vel + '-' + request.body.tiempo + '\n');
+            client.end();
             break;
         case 'rright':
+            var net = require('net');
+            var client = net.connect(1234, request.body.ip);
             client.write('legoev3rotarderecha-' + request.body.vel + '-' + request.body.tiempo + '\n');
+            client.end();
             break;
         case 'left':
+            var net = require('net');
+            try{
+                var client = net.connect(1234, request.body.ip);
+            }
+            catch(er){
+                console.log(er.message);
+            }
             client.write('legoev3izquierda-' + request.body.vel + '-' + request.body.tiempo + '\n');
+            client.end();
             break;
         case 'down':
+            var net = require('net');
+            var client = net.connect(1234, request.body.ip);
             client.write('legoev3abajo-' + request.body.vel + '-' + request.body.tiempo + '\n');
+            client.end();
             break;
         case 'right':
+            var net = require('net');
+            var client = net.connect(1234, request.body.ip);
             client.write('legoev3derecha-' + request.body.vel + '-' + request.body.tiempo + '\n');
+            client.end();
             break;
     }
+    console.log(request.body);
 }
