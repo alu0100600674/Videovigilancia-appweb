@@ -139,12 +139,7 @@ exports.enviarComando = function (request, response) {
             break;
         case 'left':
             var net = require('net');
-            try{
-                var client = net.connect(1234, request.body.ip);
-            }
-            catch(er){
-                console.log(er.message);
-            }
+            var client = net.connect(1234, request.body.ip);
             client.write('legoev3izquierda-' + request.body.vel + '-' + request.body.tiempo + '\n');
             client.end();
             break;
