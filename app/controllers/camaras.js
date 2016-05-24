@@ -99,6 +99,7 @@ exports.putonline = function (request, response) {
         if (err) response.send(error_400);
         if (Utilities.isEmpty(camara)) return response.send(error_400);
         camara[0].online = true;
+        camara[0].ip = request.body.ipcamara; // Actualizar la ip de la cámara.
         camara[0].save();
         response.send(ok);
     });
