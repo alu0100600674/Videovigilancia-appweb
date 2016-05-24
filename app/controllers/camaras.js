@@ -122,36 +122,54 @@ exports.enviarComando = function (request, response) {
         case 'rleft':
             var net = require('net');
             var client = net.connect(1234, request.body.ip);
+            client.on('error', function(e){
+                console.log(e);
+            });
             client.write('legoev3rotarizquierda-' + request.body.vel + '-' + request.body.tiempo + '\n');
             client.end();
             break;
         case 'up':
             var net = require('net');
             var client = net.connect(1234, request.body.ip);
+            client.on('error', function(e){
+                console.log(e);
+            });
             client.write('legoev3arriba-' + request.body.vel + '-' + request.body.tiempo + '\n');
             client.end();
             break;
         case 'rright':
             var net = require('net');
             var client = net.connect(1234, request.body.ip);
+            client.on('error', function(e){
+                console.log(e);
+            });
             client.write('legoev3rotarderecha-' + request.body.vel + '-' + request.body.tiempo + '\n');
             client.end();
             break;
         case 'left':
             var net = require('net');
             var client = net.connect(1234, request.body.ip);
+            client.on('error', function(e){
+                console.log(e);
+            });
             client.write('legoev3izquierda-' + request.body.vel + '-' + request.body.tiempo + '\n');
             client.end();
             break;
         case 'down':
             var net = require('net');
             var client = net.connect(1234, request.body.ip);
+            client.on('error', function(e){
+                console.log(e);
+            });
             client.write('legoev3abajo-' + request.body.vel + '-' + request.body.tiempo + '\n');
             client.end();
             break;
         case 'right':
             var net = require('net');
             var client = net.connect(1234, request.body.ip);
+            client.on('error', function(e){
+                console.log(e);
+            });
             client.write('legoev3derecha-' + request.body.vel + '-' + request.body.tiempo + '\n');
             client.end();
             break;
