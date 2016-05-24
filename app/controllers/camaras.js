@@ -100,6 +100,7 @@ exports.putonline = function (request, response) {
         if (Utilities.isEmpty(camara)) return response.send(error_400);
         camara[0].online = true;
         camara[0].ip = request.body.ipcamara; // Actualizar la ip de la cámara.
+        camara[0].server = "rtmp://" + request.body.server + request.body.name; // Actualizar la ip del servidor de streaming.
         camara[0].save();
         response.send(ok);
     });
