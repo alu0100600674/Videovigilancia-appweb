@@ -5,7 +5,7 @@ var mongoose = require('mongoose'),
     _ = require('underscore');
 var Camara = require('../../app/models/camara');
 var Utilities = require('./utilities');
-var Seguridad = require('./seguridad')
+var Seguridad = require('./seguridad');
 
 var error = {'response' : 404};
 var error_400 = {'response' : 400};
@@ -85,9 +85,9 @@ exports.delete = function (request, response) {
 
 /* New camera con cifrado */
 exports.new = function (request, response) {
-    if ( Utilities.isEmpty(request.body.name)) return response.send(error_400);
-    if ( Utilities.isEmpty(request.body.server)) return response.send(error_400);
-    if ( Utilities.isEmpty(request.body.ipcamara)) return response.send(error_400);
+    if ( Utilities.isEmpty(Seguridad.aes.descifrar(request.body.name))) return response.send(error_400);
+    if ( Utilities.isEmpty(Seguridad.aes.descifrar(request.body.server))) return response.send(error_400);
+    if ( Utilities.isEmpty(Seguridad.aes.descifrar(request.body.ipcamara))) return response.send(error_400);
     Camara.find({name: Seguridad.aes.descifrar(request.body.name)}).exec(function (err, camaras) {
         if (err) return response.send(error);
         if (!Utilities.isEmpty(camaras)) return response.send(error);
