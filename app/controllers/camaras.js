@@ -5,6 +5,7 @@ var mongoose = require('mongoose'),
     _ = require('underscore');
 var Camara = require('../../app/models/camara');
 var Utilities = require('./utilities');
+var Seguridad = require('./seguridad')
 
 var error = {'response' : 404};
 var error_400 = {'response' : 400};
@@ -127,7 +128,10 @@ exports.enviarComando = function (request, response) {
             client.on('error', function(e){
                 console.log(e);
             });
-            client.write('legoev3rotarizquierda-' + request.body.vel + '-' + request.body.tiempo + '\n');
+            var comando = 'legoev3rotarizquierda-' + request.body.vel + '-' + request.body.tiempo;
+            var cifrado = Seguridad.aes.cifrar(comando);
+            // client.write('legoev3rotarizquierda-' + request.body.vel + '-' + request.body.tiempo + '\n');
+            client.write(cifrado + "\n");
             client.end();
             break;
         case 'up':
@@ -136,7 +140,10 @@ exports.enviarComando = function (request, response) {
             client.on('error', function(e){
                 console.log(e);
             });
-            client.write('legoev3arriba-' + request.body.vel + '-' + request.body.tiempo + '\n');
+            var comando = 'legoev3arriba-' + request.body.vel + '-' + request.body.tiempo;
+            var cifrado = Seguridad.aes.cifrar(comando);
+            // client.write('legoev3arriba-' + request.body.vel + '-' + request.body.tiempo + '\n');
+            client.write(cifrado + "\n");
             client.end();
             break;
         case 'rright':
@@ -145,7 +152,10 @@ exports.enviarComando = function (request, response) {
             client.on('error', function(e){
                 console.log(e);
             });
-            client.write('legoev3rotarderecha-' + request.body.vel + '-' + request.body.tiempo + '\n');
+            var comando = 'legoev3rotarderecha-' + request.body.vel + '-' + request.body.tiempo;
+            var cifrado = Seguridad.aes.cifrar(comando);
+            // client.write('legoev3rotarderecha-' + request.body.vel + '-' + request.body.tiempo + '\n');
+            client.write(cifrado + "\n");
             client.end();
             break;
         case 'left':
@@ -154,7 +164,10 @@ exports.enviarComando = function (request, response) {
             client.on('error', function(e){
                 console.log(e);
             });
-            client.write('legoev3izquierda-' + request.body.vel + '-' + request.body.tiempo + '\n');
+            var comando = 'legoev3izquierda-' + request.body.vel + '-' + request.body.tiempo;
+            var cifrado = Seguridad.aes.cifrar(comando);
+            // client.write('legoev3izquierda-' + request.body.vel + '-' + request.body.tiempo + '\n');
+            client.write(cifrado + "\n");
             client.end();
             break;
         case 'down':
@@ -163,7 +176,10 @@ exports.enviarComando = function (request, response) {
             client.on('error', function(e){
                 console.log(e);
             });
-            client.write('legoev3abajo-' + request.body.vel + '-' + request.body.tiempo + '\n');
+            var comando = 'legoev3abajo-' + request.body.vel + '-' + request.body.tiempo;
+            var cifrado = Seguridad.aes.cifrar(comando);
+            // client.write('legoev3abajo-' + request.body.vel + '-' + request.body.tiempo + '\n');
+            client.write(cifrado + "\n");
             client.end();
             break;
         case 'right':
@@ -172,7 +188,10 @@ exports.enviarComando = function (request, response) {
             client.on('error', function(e){
                 console.log(e);
             });
-            client.write('legoev3derecha-' + request.body.vel + '-' + request.body.tiempo + '\n');
+            var comando = 'legoev3derecha-' + request.body.vel + '-' + request.body.tiempo;
+            var cifrado = Seguridad.aes.cifrar(comando);
+            // client.write('legoev3derecha-' + request.body.vel + '-' + request.body.tiempo + '\n');
+            client.write(cifrado + "\n");
             client.end();
             break;
     }
