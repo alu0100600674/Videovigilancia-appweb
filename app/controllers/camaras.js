@@ -68,22 +68,47 @@ exports.delete = function (request, response) {
     });
 };
 
-/* New camera */
+/* New camera sin cifrado */
+// exports.new = function (request, response) {
+//     if ( Utilities.isEmpty(request.body.name)) return response.send(error_400);
+//     if ( Utilities.isEmpty(request.body.server)) return response.send(error_400);
+//     if ( Utilities.isEmpty(request.body.ipcamara)) return response.send(error_400);
+//     Camara.find({name: request.body.name}).exec(function (err, camaras) {
+//         if (err) return response.send(error);
+//         if (!Utilities.isEmpty(camaras)) return response.send(error);
+//         var server = "rtmp://" + request.body.server + request.body.name;
+//         var camaranueva = new Camara({ server: server, name: request.body.name, ip: request.body.ipcamara});
+//         camaranueva.save();
+//         response.send(ok);
+//     });
+// };
+
+/* New camera con cifrado */
 exports.new = function (request, response) {
     if ( Utilities.isEmpty(request.body.name)) return response.send(error_400);
     if ( Utilities.isEmpty(request.body.server)) return response.send(error_400);
     if ( Utilities.isEmpty(request.body.ipcamara)) return response.send(error_400);
-    Camara.find({name: request.body.name}).exec(function (err, camaras) {
+    Camara.find({name: Seguridad.aes.descifrar(request.body.name)}).exec(function (err, camaras) {
         if (err) return response.send(error);
         if (!Utilities.isEmpty(camaras)) return response.send(error);
-        var server = "rtmp://" + request.body.server + request.body.name;
-        var camaranueva = new Camara({ server: server, name: request.body.name, ip: request.body.ipcamara});
+        var server = "rtmp://" + Seguridad.aes.descifrar(request.body.server) + Seguridad.aes.descifrar(request.body.name);
+        var camaranueva = new Camara({ server: server, name: Seguridad.aes.descifrar(request.body.name), ip: Seguridad.aes.descifrar(request.body.ipcamara)});
         camaranueva.save();
         response.send(ok);
     });
 };
 
-/* ¿on Live? */
+/* ¿on Live? sin cifrado */
+// exports.getisonline = function (request, response) {
+//     if (Utilities.isEmpty(request.params.id)) return response.send(error_400);
+//     Camara.findOne({_id: request.params.id}, function (err, camara) {
+//         if (err) return response.send(error);
+//         if (Utilities.isEmpty(camara)) return response.send(error);
+//         response.send(camara.online);
+//     });
+// };
+
+/* ¿on Live? con cifrado */
 exports.getisonline = function (request, response) {
     if (Utilities.isEmpty(request.params.id)) return response.send(error_400);
     Camara.findOne({_id: request.params.id}, function (err, camara) {
@@ -93,21 +118,47 @@ exports.getisonline = function (request, response) {
     });
 };
 
-/* on Live */
+/* on Live sin cifrado */
+// exports.putonline = function (request, response) {
+//     if (Utilities.isEmpty(request.params.name)) return response.send(error_400);
+//     Camara.find({name: request.params.name}).exec(function (err, camara) {
+//         if (err) response.send(error_400);
+//         if (Utilities.isEmpty(camara)) return response.send(error_400);
+//         camara[0].online = true;
+//         camara[0].ip = request.body.ipcamara; // Actualizar la ip de la cámara.
+//         camara[0].server = "rtmp://" + request.body.server + request.body.name; // Actualizar la ip del servidor de streaming.
+//         camara[0].save();
+//         response.send(ok);
+//     });
+// };
+
+/* on Live con cifrado */
 exports.putonline = function (request, response) {
     if (Utilities.isEmpty(request.params.name)) return response.send(error_400);
     Camara.find({name: request.params.name}).exec(function (err, camara) {
         if (err) response.send(error_400);
         if (Utilities.isEmpty(camara)) return response.send(error_400);
         camara[0].online = true;
-        camara[0].ip = request.body.ipcamara; // Actualizar la ip de la cámara.
-        camara[0].server = "rtmp://" + request.body.server + request.body.name; // Actualizar la ip del servidor de streaming.
+        camara[0].ip = Seguridad.aes.descifrar(request.body.ipcamara); // Actualizar la ip de la cámara.
+        camara[0].server = "rtmp://" + Seguridad.aes.descifrar(request.body.server) + Seguridad.aes.descifrar(request.body.name); // Actualizar la ip del servidor de streaming.
         camara[0].save();
         response.send(ok);
     });
 };
 
-/* off Live  */
+/* off Live sin cifrado */
+// exports.putoffline = function (request, response) {
+//     if (Utilities.isEmpty(request.params.name)) return response.send(error_400);
+//     Camara.find({name: request.params.name}).exec(function (err, camara) {
+//         if (err) response.send(error_400);
+//         if (Utilities.isEmpty(camara)) return response.send(error_400);
+//         camara[0].online = false;
+//         camara[0].save();
+//         response.send(ok);
+//     });
+// };
+
+/* off Live con cifrado */
 exports.putoffline = function (request, response) {
     if (Utilities.isEmpty(request.params.name)) return response.send(error_400);
     Camara.find({name: request.params.name}).exec(function (err, camara) {
