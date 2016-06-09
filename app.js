@@ -11,16 +11,6 @@ var bodyParser = require('body-parser');
 var errorHandler = require('errorhandler');
 var passport = require('passport');
 
-/********** Generar clave compartida ***********/
-var Seguridad = require('./app/controllers/seguridad');
-var clientpub = Seguridad.certificado.leerClaveDeFichero('./certificados/clientpub.txt');
-var serverpub = Seguridad.certificado.leerClaveDeFichero('./certificados/serverpub.txt');
-var serverpri = Seguridad.certificado.leerClaveDeFichero('./certificados/serverpri.txt');
-
-var pub = Seguridad.ecdh.generarClavePublica(clientpub);
-var pri = Seguridad.ecdh.generarClavePrivada(serverpri);
-var com = Seguridad.ecdh.generarClaveCompartida(pri, pub);
-/***********************************************/
 
 var app = express();
 

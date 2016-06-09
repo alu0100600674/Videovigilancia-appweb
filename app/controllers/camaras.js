@@ -11,6 +11,17 @@ var error = {'response' : 404};
 var error_400 = {'response' : 400};
 var ok = {'response' : 201};
 
+/********** Generar clave compartida ***********/
+var Seguridad = require('./seguridad');
+var clientpub = Seguridad.certificado.leerClaveDeFichero('./certificados/clientpub.txt');
+var serverpub = Seguridad.certificado.leerClaveDeFichero('./certificados/serverpub.txt');
+var serverpri = Seguridad.certificado.leerClaveDeFichero('./certificados/serverpri.txt');
+
+var pub = Seguridad.ecdh.generarClavePublica(clientpub);
+var pri = Seguridad.ecdh.generarClavePrivada(serverpri);
+var com = Seguridad.ecdh.generarClaveCompartida(pri, pub);
+/***********************************************/
+
 /* Views Responce */
 exports.index = function (req, res) {
     res.render('camaras');
