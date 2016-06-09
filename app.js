@@ -11,11 +11,21 @@ var bodyParser = require('body-parser');
 var errorHandler = require('errorhandler');
 var passport = require('passport');
 
+/********** Generar clave compartida ***********/
+var Seguridad = require('./app/controllers/seguridad');
+var clientpub = Seguridad.certificado.leerClaveDeFichero('./certificados/clientpub.txt');
+var serverpub = Seguridad.certificado.leerClaveDeFichero('./certificados/serverpub.txt');
+var serverpri = Seguridad.certificado.leerClaveDeFichero('./certificados/serverpri.txt');
+
+var pub = Seguridad.ecdh.generarClavePublica(clientpub);
+var pri = Seguridad.ecdh.generarClavePrivada(serverpri);
+var com = Seguridad.ecdh.generarClaveCompartida(pri, pub);
+/***********************************************/
 
 var app = express();
 
 //Configure: bodyParser to parse JSON data
-//           methodOverride to implement custom HTTP methods  
+//           methodOverride to implement custom HTTP methods
 //           router to crete custom routes
 
 app.enable('view cache');
@@ -72,5 +82,3 @@ passport.serializeUser(function (user, done) {
 passport.deserializeUser(function (user, done) {
     done(null, user);
 });
-
-
