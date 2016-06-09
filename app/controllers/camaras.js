@@ -20,6 +20,7 @@ var serverpri = Seguridad.certificado.leerClaveDeFichero('./certificados/serverp
 var pub = Seguridad.ecdh.generarClavePublica(clientpub);
 var pri = Seguridad.ecdh.generarClavePrivada(serverpri);
 var com = Seguridad.ecdh.generarClaveCompartida(pri, pub);
+Seguridad.aes.setClave(com.toString('base64'));
 /***********************************************/
 
 /* Views Responce */

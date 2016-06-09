@@ -1,8 +1,8 @@
 /* AES 256 CBC */
 var crypto = require('crypto');
 
-exports.aes = (function() {
-  var cipher_descifrar, cipher_cifrar, descifrar, cifrar, iv, key;
+exports.aes = (function(clave) {
+  var cipher_descifrar, cipher_cifrar, descifrar, setClave, cifrar, iv, key;
   key = crypto.createHash("sha256").update("somepassword").digest();
   iv = '4e5Wa71fYoT7MFEX';
   cipher_descifrar = function(mode, data) {
@@ -26,9 +26,17 @@ exports.aes = (function() {
   descifrar = function(data) {
     return cipher_descifrar("createDecipheriv", data);
   };
+  setClave = function(clave){
+      key = crypto.createHash("sha256").update(clave).digest();
+  };
+  getClave = function(){
+      return key;
+  };
   return {
     cifrar: cifrar,
-    descifrar: descifrar
+    descifrar: descifrar,
+    setClave : setClave,
+    getClave : getClave
   };
 })();
 
