@@ -299,6 +299,28 @@ exports.enviarComando = function (request, response) {
             client.write(cifrado + "\n");
             client.end();
             break;
+        case 'stop':
+            var net = require('net');
+            var client = net.connect(1234, request.body.ip);
+            client.on('error', function(e){
+                console.log(e);
+            });
+            var comando = 'robocamstopstreaming';
+            var cifrado = Seguridad.aes.cifrar(comando);
+            client.write(cifrado + "\n");
+            client.end();
+            break;
+        case 'flash':
+            var net = require('net');
+            var client = net.connect(1234, request.body.ip);
+            client.on('error', function(e){
+                console.log(e);
+            });
+            var comando = 'robocamflash';
+            var cifrado = Seguridad.aes.cifrar(comando);
+            client.write(cifrado + "\n");
+            client.end();
+            break;
     }
     console.log(request.body);
 }

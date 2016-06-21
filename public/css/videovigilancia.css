@@ -81,3 +81,11 @@ body{
 .v-tiempo{
     width: 100px !important;
 }
+
+#stop{
+    margin-right: 40px;
+}
+
+#flash{
+    margin-left: 40px;
+}
