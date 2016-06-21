@@ -17,6 +17,8 @@
                     <th data-field="mac">Cámara</th>
                     <th data-field="mac">IP</th>
                     <th data-field="server">URL Streaming</th>
+                    <th data-field="startstreaming"></th>
+                    <th data-field="startmov"></th>
                     <th data-field="delete"></th>
                 </tr>
                 </thead>
@@ -29,10 +31,19 @@
                     <td>{{camara.ip}}</td>
                     <td>{{camara.server}}</td>
                     <td>
+                        <a ng-click="startstreaming(camara._id)" class="btn btn-floating waves-effect waves-light green hoverable">
+                            <i  class="material-icons">videocam</i>
+                        </a>
+                    </td>
+                    <td>
+                        <a ng-click="startmov(camara._id)" class="btn btn-floating waves-effect waves-light orange hoverable">
+                            <i  class="material-icons">remove_red_eye</i>
+                        </a>
+                    </td>
+                    <td>
                         <a ng-click="delete(camara._id)" class="btn btn-floating waves-effect waves-light red hoverable">
                             <i  class="material-icons">delete</i>
-                            </a>
-
+                        </a>
                     </td>
                 </tr>
                 </tbody>

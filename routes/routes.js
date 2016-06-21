@@ -27,6 +27,8 @@ module.exports = function (app) {
     app.put('/offline/:name', camaras.putoffline); // poner una cámara offLive
 
     app.post('/robot', camaras.enviarComando); // Enviar comando para el robot
+    app.put('/startstreaming/:id', camaras.startstreaming); // Enviar al smartphone orden de iniciar streaming
+    app.put('/startmov/:id', camaras.startmov); // Enviar a smartphone orden de iniciar deteccion de movimiento
 
 
 //    //petición get para acceder a la página de login

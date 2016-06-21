@@ -182,6 +182,48 @@ exports.putoffline = function (request, response) {
     });
 };
 
+/* Start streaming */
+exports.startstreaming = function (request, response) {
+    if ( Utilities.isEmpty(request.params.id)) return response.send(error_400);
+    Camara.findOne({_id: request.params.id}, function (err, camara) {
+        if (err) return response.send(error);
+        if (Utilities.isEmpty(camara)) return response.send(error);
+
+        var net = require('net');
+        var client = net.connect(1234, camara.ip);
+        client.on('error', function(e){
+            console.log(e);
+        });
+        var comando = 'robocamstartstreaming';
+        var cifrado = Seguridad.aes.cifrar(comando);
+        client.write(cifrado + "\n");
+        client.end();
+
+        response.send(ok);
+    });
+};
+
+/* Start deteccion de movimiento */
+exports.startmov = function (request, response) {
+    if ( Utilities.isEmpty(request.params.id)) return response.send(error_400);
+    Camara.findOne({_id: request.params.id}, function (err, camara) {
+        if (err) return response.send(error);
+        if (Utilities.isEmpty(camara)) return response.send(error);
+
+        var net = require('net');
+        var client = net.connect(1234, camara.ip);
+        client.on('error', function(e){
+            console.log(e);
+        });
+        var comando = 'robocamstartmov';
+        var cifrado = Seguridad.aes.cifrar(comando);
+        client.write(cifrado + "\n");
+        client.end();
+
+        response.send(ok);
+    });
+};
+
 /* Comandos de robot */
 exports.enviarComando = function (request, response) {
     switch(request.body.movimiento){

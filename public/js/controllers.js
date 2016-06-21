@@ -151,6 +151,44 @@ streamingApp.controller('ListCamarasCtrl', function ($scope, $http, $location) {
     }
 
 
+    $scope.startstreaming = function (id) {
+        console.log($scope.startstreaming);
+        $http({
+            method: 'PUT',
+            url: '/startstreaming/' + id,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function (response) {
+            $scope.codeStatus = response;
+            $scope.camaras = response;
+            console.log(response);
+            updateData();
+        }).error(function (response) {  // Getting Error Response in Callback
+            console.log("error");
+            $scope.codeStatus = response || "Request failed";
+            console.log($scope.codeStatus);
+        });
+    };
+
+
+    $scope.startmov = function (id) {
+        console.log($scope.startmov);
+        $http({
+            method: 'PUT',
+            url: '/startmov/' + id,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function (response) {
+            $scope.codeStatus = response;
+            $scope.camaras = response;
+            console.log(response);
+            updateData();
+        }).error(function (response) {  // Getting Error Response in Callback
+            console.log("error");
+            $scope.codeStatus = response || "Request failed";
+            console.log($scope.codeStatus);
+        });
+    };
+
+
     $scope.delete = function (id) {
         console.log($scope.delete);
         $http({
@@ -282,5 +320,3 @@ streamingApp.controller('HomeCtrl', function ($scope, $http, $window, $location)
 
 
 });
-
-
