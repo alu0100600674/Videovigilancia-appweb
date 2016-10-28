@@ -117,6 +117,34 @@ streamingApp.controller('CamarasCtrl', function ($scope, $http, $window, $locati
     });
 
 
+    $scope.moverRobot = function (id, mov) {
+        var vel = document.getElementById("vel-video-" + id).value;
+        var tiempo = document.getElementById("tiempo-video-" + id).value;
+        var ip = document.getElementById("ip-video-" + id).value;
+
+        $http({
+            method: 'POST',
+            url: '/robot',
+            headers: {'Content-Type': 'application/json'},
+            data: {
+                'movimiento' : mov,
+                'ip' : ip,
+                'vel' : vel,
+                'tiempo' : tiempo
+            }
+        }).success(function (response) {
+            $scope.codeStatus = response;
+            // $scope.camaras = response;
+            console.log(response);
+            // updateData();
+        }).error(function (response) {  // Getting Error Response in Callback
+            console.log("error");
+            $scope.codeStatus = response || "Request failed";
+            console.log($scope.codeStatus);
+        });
+    };
+
+
 });
 
 streamingApp.controller('ListCamarasCtrl', function ($scope, $http, $location) {

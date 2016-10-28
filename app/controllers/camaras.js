@@ -323,4 +323,5 @@ exports.enviarComando = function (request, response) {
             break;
     }
     console.log(request.body);
+    response.send(ok);
 }

@@ -41,22 +41,22 @@
                                     </div>
                                 </div>
                                 <div class="v-robot">
-                                    <form action="/robot" method="post">
-                                        <button name="movimiento" value="stop" id="stop" class="btn-robot"><i class="fa fa-stop fa-2x" aria-hidden="true"></i></button>
-                                        <button name="movimiento" value="rleft" id="rleft" class="btn-robot"><i class="fa fa-undo fa-2x" aria-hidden="true"></i></button>
-                                        <button name="movimiento" value="up" id="up" class="btn-robot"><i class="fa fa-arrow-up fa-2x"></i></button>
-                                        <button name="movimiento" value="rright" id="rright" class="btn-robot"><i class="fa fa-repeat fa-2x" aria-hidden="true"></i></button>
-                                        <button name="movimiento" value="flash" id="flash" class="btn-robot"><i class="fa fa-bolt fa-2x" aria-hidden="true"></i></button>
+                                    <form id="form-{{camara._id}}" name="form-{{camara._id}}">
+                                        <button ng-click="moverRobot(camara._id, 'stop')" name="movimiento" value="stop" id="stop" class="btn-robot"><i class="fa fa-stop fa-2x" aria-hidden="true"></i></button>
+                                        <button ng-click="moverRobot(camara._id, 'rleft')" name="movimiento" value="rleft" id="rleft" class="btn-robot"><i class="fa fa-undo fa-2x" aria-hidden="true"></i></button>
+                                        <button ng-click="moverRobot(camara._id, 'up')" name="movimiento" value="up" id="up" class="btn-robot"><i class="fa fa-arrow-up fa-2x"></i></button>
+                                        <button ng-click="moverRobot(camara._id, 'rright')" name="movimiento" value="rright" id="rright" class="btn-robot"><i class="fa fa-repeat fa-2x" aria-hidden="true"></i></button>
+                                        <button ng-click="moverRobot(camara._id, 'flash')" name="movimiento" value="flash" id="flash" class="btn-robot"><i class="fa fa-bolt fa-2x" aria-hidden="true"></i></button>
                                         <div class="vacio"></div>
-                                        <button name="movimiento" value="left" id="left" class="btn-robot"><i class="fa fa-arrow-left fa-2x"></i></button>
-                                        <button name="movimiento" value="down" id="down" class="btn-robot"><i class="fa fa-arrow-down fa-2x"></i></button>
-                                        <button name="movimiento" value="right" id="right" class="btn-robot"><i class="fa fa-arrow-right fa-2x"></i></button>
+                                        <button ng-click="moverRobot(camara._id, 'left')" name="movimiento" value="left" id="left" class="btn-robot"><i class="fa fa-arrow-left fa-2x"></i></button>
+                                        <button ng-click="moverRobot(camara._id, 'down')" name="movimiento" value="down" id="down" class="btn-robot"><i class="fa fa-arrow-down fa-2x"></i></button>
+                                        <button ng-click="moverRobot(camara._id, 'right')" name="movimiento" value="right" id="right" class="btn-robot"><i class="fa fa-arrow-right fa-2x"></i></button>
                                         <div class="vacio"></div>
                                         <label for="vel-{{'video-'+camara._id}}">Velocidad</label>
                                         <input name="vel" id="vel-{{'video-'+camara._id}}" class="v-vel" type="range" min="10" max="100" value="40" step="10">
                                         <label for="tiempo-{{'video-'+camara._id}}">Tiempo</label>
                                         <input name="tiempo" id="tiempo-{{'video-'+camara._id}}" class="v-tiempo" type="range" min="1" max="10" value="3" step="1">
-                                        <input type="hidden" name="ip" value="{{camara.ip}}">
+                                        <input type="hidden" id="ip-{{'video-'+camara._id}}" name="ip" value="{{camara.ip}}">
                                     </form>
                                 </div>
                                 <div class="card-action v-camara-nombre">
@@ -79,10 +79,6 @@
     </div>
 
 </div>
-<script type="text/javascript">
-
-
-</script>
 <% include _footer.ejs %>
 </body>
 </html>
