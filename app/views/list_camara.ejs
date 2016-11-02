@@ -14,8 +14,9 @@
                 <thead>
                 <tr>
                     <th data-field="live"></th>
+                    <th data-field="name">Nombre</th>
                     <th data-field="mac">Cámara</th>
-                    <th data-field="mac">IP</th>
+                    <th data-field="ip">IP</th>
                     <th data-field="server">URL Streaming</th>
                     <th data-field="startstreaming"></th>
                     <th data-field="startmov"></th>
@@ -27,6 +28,7 @@
                     <td>
                         <span id="badge_table" ng-if="camara.online" class="badge_custom live hoverable"></span>
                     </td>
+                    <td>{{camara.nickname}}</td>
                     <td>{{camara.name}}</td>
                     <td>{{camara.ip}}</td>
                     <td>{{camara.server}}</td>

@@ -16,7 +16,8 @@
     <div class="row">
         <div class="col m3 s3">
             <div class="collection" ng-repeat="camara in camaras">
-                <a ng-click="scrollTo(camara._id)" href="" class="collection-item">{{camara.name}}</a>
+                <a ng-if="camara.nickname == ''" ng-click="scrollTo(camara._id)" href="" class="collection-item">{{camara.name}}</a>
+                <a ng-if="camara.nickname != ''" ng-click="scrollTo(camara._id)" href="" class="collection-item">{{camara.nickname}}</a>
             </div>
         </div>
         <div class="col m9 s9">
@@ -60,8 +61,11 @@
                                     </form>
                                 </div>
                                 <div class="card-action v-camara-nombre">
-                                    <span class="card-title grey-text text-darken-4">
+                                    <span ng-if="camara.nickname == ''" class="card-title grey-text text-darken-4">
                                         {{camara.name}}
+                                    </span>
+                                    <span ng-if="camara.nickname != ''" class="card-title grey-text text-darken-4">
+                                        {{camara.nickname}}
                                     </span>
                                     <span class="card-title grey-text text-darken-4" style="margin-left:10px">
                                         ({{camara.ip}})

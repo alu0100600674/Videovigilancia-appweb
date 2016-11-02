@@ -6,6 +6,7 @@ var camaraSchema = new Schema({
     server: String,
     name:  String,
     ip: String,
+    nickname: String,
     online: { type: Boolean, default: false }
 });
 
