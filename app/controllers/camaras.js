@@ -216,7 +216,7 @@ exports.startmov = function (request, response) {
         client.on('error', function(e){
             console.log(e);
         });
-        var comando = 'robocamstartmov';
+        var comando = 'robocamstartmotiondetection';
         var cifrado = Seguridad.aes.cifrar(comando);
         client.write(cifrado + "\n");
         client.end();
