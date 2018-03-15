@@ -39,6 +39,18 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, 'public')));
 
++app.use(function(req, res, next){
+    
+    // Save path to redir after login
+    if(!req.path.match(/\/login|\/logout/)){
+        req.session.redir = req.path;
+    }
+    
+    // Make visible session in views
+    res.locals.session = req.session;
+    next();
+});
+
 // error handling middleware should be loaded after the loading the routes
 if ('development' == app.get('env')) {
     app.use(errorHandler());

@@ -4,6 +4,7 @@ module.exports = function (app) {
     var user = require('../app/controllers/user');
     var utilities = require('../app/controllers/utilities');
     var camaras = require('../app/controllers/camaras');
+    var sessionController = require('../app/controllers/session');
     var passport = require('passport');
 
     /* Home Page */
@@ -12,8 +13,12 @@ module.exports = function (app) {
     // Camaras
     // Vistas
     app.get('/live', camaras.index); // index de todas las cámaras en directo
-    app.get('/addcamara', camaras.addindex); // vista para añadir camara
-    app.get('/listcamaras', camaras.listindex); // vista para añadir camara
+    app.get('/addcamara', sessionController.loginRequired, camaras.addindex); // vista para añadir camara
+    app.get('/listcamaras', sessionController.loginRequired, camaras.listindex); // vista para añadir camara
+
+    app.get('/login', sessionController.new); // Formulario de login
+    app.post('/login', sessionController.create); // Crear sesión
+    app.get('/logout', sessionController.destroy); // Destruir sesión
 
     // API
     app.post('/camara', camaras.new); // crear nueva camara --> registro
