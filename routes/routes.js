@@ -15,6 +15,9 @@ module.exports = function (app) {
     app.get('/live', camaras.index); // index de todas las cámaras en directo
     app.get('/addcamara', sessionController.loginRequired, camaras.addindex); // vista para añadir camara
     app.get('/listcamaras', sessionController.loginRequired, camaras.listindex); // vista para añadir camara
+    app.get('/contact', camaras.contactindex); // Contacto
+    app.get('/emailsent', camaras.emailsent); // Email enviado satisfactoriamente
+    app.get('/emailerror', camaras.emailerror); // Fallo al enviar el email
 
     app.get('/login', sessionController.new); // Formulario de login
     app.post('/login', sessionController.create); // Crear sesión
@@ -35,6 +38,7 @@ module.exports = function (app) {
     app.put('/startstreaming/:id', camaras.startstreaming); // Enviar al smartphone orden de iniciar streaming
     app.put('/startmov/:id', camaras.startmov); // Enviar a smartphone orden de iniciar deteccion de movimiento
 
+    app.post('/contactemail', camaras.contactEmail); // Envía un correo cuando se pulsa el botón de "Enviar"
 
 //    //petición get para acceder a la página de login
 //    app.get('/login', utilities.index);

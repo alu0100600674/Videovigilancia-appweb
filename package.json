@@ -5,20 +5,21 @@
     "start": "node app"
   },
   "dependencies": {
-    "express": "*",
-    "mongoose": "*",
-    "node-gcm": "*",
-    "underscore": "*",
-    "request": "*",
-    "morgan": "*",
-    "method-override": "*",
-    "express-session": "*",
     "body-parser": "*",
+    "ecdh": "~0.1.1",
     "errorhandler": "*",
-    "passport": "*",
-    "moment": "~2.4.0",
+    "express": "*",
+    "express-session": "*",
     "formidable": "*",
-    "ecdh": "~0.1.1"
+    "method-override": "*",
+    "moment": "~2.4.0",
+    "mongoose": "*",
+    "morgan": "*",
+    "node-gcm": "*",
+    "nodemailer": "^4.6.3",
+    "passport": "*",
+    "request": "*",
+    "underscore": "*"
   },
   "description": "Streaming Server",
   "repository": "Bitbucket"

@@ -10,6 +10,7 @@ var session = require('express-session');
 var bodyParser = require('body-parser');
 var errorHandler = require('errorhandler');
 var passport = require('passport');
+var nodemailer = require('nodemailer');
 
 
 var app = express();

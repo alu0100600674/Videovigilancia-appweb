@@ -6,6 +6,7 @@ var mongoose = require('mongoose'),
 var Camara = require('../../app/models/camara');
 var Utilities = require('./utilities');
 var Seguridad = require('./seguridad');
+var nodemailer = require('nodemailer');
 
 var error = {'response' : 404};
 var error_400 = {'response' : 400};
@@ -39,6 +40,18 @@ exports.addindex = function (req, res) {
 
 exports.listindex = function (req, res) {
     res.render('list_camara');
+};
+
+exports.contactindex = function (req, res) {
+    res.render('contact');
+};
+
+exports.emailsent = function (req, res) {
+    res.render('emailsent');
+};
+    
+exports.emailerror = function (req, res) {
+    res.render('emailerror');
 };
 
 
@@ -373,3 +386,40 @@ exports.enviarComando = function (request, response) {
     console.log(request.body);
     response.send(ok);
 }
+
+
+/* Send an email from contact form */
+exports.contactEmail = function (request, response) {
+    
+    var CONTACT_EMAIL = "";
+    var CONTACT_PASSWORD = "";
+    
+    var mailOpts, smtpTrans;
+        
+     // Email parameters
+    smtpTrans = nodemailer.createTransport({
+        host: 'smtp.gmail.com',
+        port: 465,
+        secure: true,
+        auth: { user: CONTACT_EMAIL, pass: CONTACT_PASSWORD }
+    });
+   
+    // Email content
+    mailOpts = {
+        from: request.body.name + '(' + request.body.email + ')',
+        to: CONTACT_EMAIL,
+        subject: request.body.subject,
+        text: 'De: ' + request.body.name + ' ' + request.body.surname + ' (' + request.body.email + ')\n\n' + request.body.textemail
+    };
+
+    // Send email and response
+    smtpTrans.sendMail(mailOpts, function (error, res) {
+        if (error) {
+            console.log(error);
+            response.render('emailerror');
+        } else {
+            console.log("Email sent");
+            response.render('emailsent');
+        }
+    });
+};

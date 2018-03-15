@@ -5,10 +5,15 @@
             <li class="v-letra-menu"> <a href="http://alu0100600674.github.io/Videovigilancia-web" target="_blank"> WEB DEL PROYECTO </a> </li>
         </ul>
         <ul class="right hide-on-med-and-down">
-            
+
             <% if(session.user){ %>
                 <li class="v-letra-menu"><a href="/live">CÁMARAS EN DIRECTO<span class="live badge_custom">{{livecounter}} </span></a></li>
                 <li class="v-letra-menu"><a href="/listcamaras">LISTADO DE CÁMARAS</a></li>
+            <% } %>
+
+            <li><a href="/contact">CONTACTO</a></li>
+            
+            <% if(session.user){ %>
                 <li><a href="/logout">CERRAR SESIÓN</a></li>
             <% } else { %>
                 <li><a href="/login">INICIAR SESIÓN</a></li>
