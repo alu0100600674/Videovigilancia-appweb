@@ -115,11 +115,25 @@ exports.new = function (request, response) {
     if ( Utilities.isEmpty(Seguridad.aes.descifrar(request.body.ipcamara))) return response.send(error_400);
     Camara.find({name: Seguridad.aes.descifrar(request.body.name)}).exec(function (err, camaras) {
         if (err) return response.send(error);
-        if (!Utilities.isEmpty(camaras)) return response.send(error);
-        var server = "rtmp://" + Seguridad.aes.descifrar(request.body.server) + Seguridad.aes.descifrar(request.body.name);
-        var camaranueva = new Camara({ server: server, name: Seguridad.aes.descifrar(request.body.name), ip: Seguridad.aes.descifrar(request.body.ipcamara), nickname: Seguridad.aes.descifrar(request.body.nombrecamara) });
-        camaranueva.save();
-        response.send(ok);
+
+        if (!Utilities.isEmpty(camaras)){ // Actualizar si ya existe
+            Camara.find({name: Seguridad.aes.descifrar(request.body.name)}).exec(function (err, camara) {
+                if (err) response.send(error_400);
+                if (Utilities.isEmpty(camara)) return response.send(error_400);
+                camara[0].online = false;
+                camara[0].ip = Seguridad.aes.descifrar(request.body.ipcamara); // Actualizar la ip de la cámara.
+                camara[0].nickname = Seguridad.aes.descifrar(request.body.nombrecamara); // Actualizar el alias de la cámara.
+                camara[0].server = "rtmp://" + Seguridad.aes.descifrar(request.body.server) + Seguridad.aes.descifrar(request.body.name); // Actualizar la ip del servidor de streaming.
+                camara[0].save();
+                return response.send(ok);
+            });
+
+        } else { // Crear nueva
+            var server = "rtmp://" + Seguridad.aes.descifrar(request.body.server) + Seguridad.aes.descifrar(request.body.name);
+            var camaranueva = new Camara({ server: server, name: Seguridad.aes.descifrar(request.body.name), ip: Seguridad.aes.descifrar(request.body.ipcamara), nickname: Seguridad.aes.descifrar(request.body.nombrecamara) });
+            camaranueva.save();
+            response.send(ok);
+        }
     });
 };
 
