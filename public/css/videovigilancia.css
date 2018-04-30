@@ -83,10 +83,10 @@ body{
     width: 100px !important;
 }
 
-#stopstreaming{
+.btn-left {
     margin-right: 40px;
 }
 
-#flash{
+.btn-right {
     margin-left: 40px;
 }

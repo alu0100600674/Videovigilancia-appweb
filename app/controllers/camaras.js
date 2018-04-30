@@ -264,7 +264,6 @@ exports.enviarComando = function (request, response) {
             });
             var comando = 'robotforwardleft-' + request.body.vel + '-' + request.body.tiempo;
             var cifrado = Seguridad.aes.cifrar(comando);
-            // client.write('legoev3rotarizquierda-' + request.body.vel + '-' + request.body.tiempo + '\n');
             client.write(cifrado + "\n");
             client.end();
             break;
@@ -277,7 +276,6 @@ exports.enviarComando = function (request, response) {
             });
             var comando = 'robotforward-' + request.body.vel + '-' + request.body.tiempo;
             var cifrado = Seguridad.aes.cifrar(comando);
-            // client.write('legoev3rotarizquierda-' + request.body.vel + '-' + request.body.tiempo + '\n');
             client.write(cifrado + "\n");
             client.end();
             break;
@@ -290,7 +288,6 @@ exports.enviarComando = function (request, response) {
             });
             var comando = 'robotforwardright-' + request.body.vel + '-' + request.body.tiempo;
             var cifrado = Seguridad.aes.cifrar(comando);
-            // client.write('legoev3rotarizquierda-' + request.body.vel + '-' + request.body.tiempo + '\n');
             client.write(cifrado + "\n");
             client.end();
             break;
@@ -303,7 +300,6 @@ exports.enviarComando = function (request, response) {
             });
             var comando = 'robotrotateleft-' + request.body.vel + '-' + request.body.tiempo;
             var cifrado = Seguridad.aes.cifrar(comando);
-            // client.write('legoev3rotarizquierda-' + request.body.vel + '-' + request.body.tiempo + '\n');
             client.write(cifrado + "\n");
             client.end();
             break;
@@ -316,7 +312,6 @@ exports.enviarComando = function (request, response) {
             });
             var comando = 'robotmovestop-' + request.body.vel + '-' + request.body.tiempo;
             var cifrado = Seguridad.aes.cifrar(comando);
-            // client.write('legoev3rotarizquierda-' + request.body.vel + '-' + request.body.tiempo + '\n');
             client.write(cifrado + "\n");
             client.end();
             break;
@@ -329,7 +324,6 @@ exports.enviarComando = function (request, response) {
             });
             var comando = 'robotrotateright-' + request.body.vel + '-' + request.body.tiempo;
             var cifrado = Seguridad.aes.cifrar(comando);
-            // client.write('legoev3rotarizquierda-' + request.body.vel + '-' + request.body.tiempo + '\n');
             client.write(cifrado + "\n");
             client.end();
             break;
@@ -342,7 +336,6 @@ exports.enviarComando = function (request, response) {
             });
             var comando = 'robotbackwardleft-' + request.body.vel + '-' + request.body.tiempo;
             var cifrado = Seguridad.aes.cifrar(comando);
-            // client.write('legoev3rotarizquierda-' + request.body.vel + '-' + request.body.tiempo + '\n');
             client.write(cifrado + "\n");
             client.end();
             break;
@@ -355,7 +348,6 @@ exports.enviarComando = function (request, response) {
             });
             var comando = 'robotbackward-' + request.body.vel + '-' + request.body.tiempo;
             var cifrado = Seguridad.aes.cifrar(comando);
-            // client.write('legoev3rotarizquierda-' + request.body.vel + '-' + request.body.tiempo + '\n');
             client.write(cifrado + "\n");
             client.end();
             break;
@@ -368,7 +360,54 @@ exports.enviarComando = function (request, response) {
             });
             var comando = 'robotbackwardright-' + request.body.vel + '-' + request.body.tiempo;
             var cifrado = Seguridad.aes.cifrar(comando);
-            // client.write('legoev3rotarizquierda-' + request.body.vel + '-' + request.body.tiempo + '\n');
+            client.write(cifrado + "\n");
+            client.end();
+            break;
+        
+        case 'robotdock':
+            var net = require('net');
+            var client = net.connect(1234, request.body.ip);
+            client.on('error', function(e){
+                console.log(e);
+            });
+            var comando = 'robotdock-' + request.body.vel + '-' + request.body.tiempo;
+            var cifrado = Seguridad.aes.cifrar(comando);
+            client.write(cifrado + "\n");
+            client.end();
+            break;
+
+        case 'robotstartoi':
+            var net = require('net');
+            var client = net.connect(1234, request.body.ip);
+            client.on('error', function(e){
+                console.log(e);
+            });
+            var comando = 'robotstartoi-' + request.body.vel + '-' + request.body.tiempo;
+            var cifrado = Seguridad.aes.cifrar(comando);
+            client.write(cifrado + "\n");
+            client.end();
+            break;
+
+        case 'robotsafemode':
+            var net = require('net');
+            var client = net.connect(1234, request.body.ip);
+            client.on('error', function(e){
+                console.log(e);
+            });
+            var comando = 'robotsafemode-' + request.body.vel + '-' + request.body.tiempo;
+            var cifrado = Seguridad.aes.cifrar(comando);
+            client.write(cifrado + "\n");
+            client.end();
+            break;
+
+        case 'robotstopmode':
+            var net = require('net');
+            var client = net.connect(1234, request.body.ip);
+            client.on('error', function(e){
+                console.log(e);
+            });
+            var comando = 'robotstopmode-' + request.body.vel + '-' + request.body.tiempo;
+            var cifrado = Seguridad.aes.cifrar(comando);
             client.write(cifrado + "\n");
             client.end();
             break;
