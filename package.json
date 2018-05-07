@@ -7,9 +7,12 @@
   "dependencies": {
     "body-parser": "*",
     "ecdh": "~0.1.1",
+    "ejs": "^2.6.1",
     "errorhandler": "*",
     "express": "*",
+    "express-ejs-layouts": "^2.4.0",
     "express-session": "*",
+    "firebase": "^4.13.1",
     "formidable": "*",
     "method-override": "*",
     "moment": "~2.4.0",

@@ -8,6 +8,18 @@ var Utilities = require('./utilities');
 var Seguridad = require('./seguridad');
 var nodemailer = require('nodemailer');
 
+var firebase = require('firebase');
+var config = {
+    apiKey: "AIzaSyC0ERiCV6lAJA2a9I1fMR2JCeE5GgwlZs0",
+    authDomain: "robocam-3e863.firebaseapp.com",
+    databaseURL: "https://robocam-3e863.firebaseio.com",
+    projectId: "robocam-3e863",
+    storageBucket: "robocam-3e863.appspot.com",
+    messagingSenderId: "609973164692"
+};
+firebase.initializeApp(config);
+var database = firebase.database()
+
 var error = {'response' : 404};
 var error_400 = {'response' : 400};
 var ok = {'response' : 201};
@@ -257,183 +269,136 @@ exports.enviarComando = function (request, response) {
     switch(request.body.movimiento){
 
         case 'forwardleft':
-            var net = require('net');
-            var client = net.connect(1234, request.body.ip);
-            client.on('error', function(e){
-                console.log(e);
-            });
+
             var comando = 'robotforwardleft-' + request.body.vel + '-' + request.body.tiempo;
-            var cifrado = Seguridad.aes.cifrar(comando);
-            client.write(cifrado + "\n");
-            client.end();
+            // var cifrado = Seguridad.aes.cifrar(comando);
+            var updates = {};
+            updates[request.body.ip] = comando;
+            firebase.database().ref().update(updates);
             break;
 
         case 'forward':
-            var net = require('net');
-            var client = net.connect(1234, request.body.ip);
-            client.on('error', function(e){
-                console.log(e);
-            });
+
             var comando = 'robotforward-' + request.body.vel + '-' + request.body.tiempo;
-            var cifrado = Seguridad.aes.cifrar(comando);
-            client.write(cifrado + "\n");
-            client.end();
+            // var cifrado = Seguridad.aes.cifrar(comando);
+            var updates = {};
+            updates[request.body.ip] = comando;
+            firebase.database().ref().update(updates);
             break;
 
         case 'forwardright':
-            var net = require('net');
-            var client = net.connect(1234, request.body.ip);
-            client.on('error', function(e){
-                console.log(e);
-            });
+
             var comando = 'robotforwardright-' + request.body.vel + '-' + request.body.tiempo;
-            var cifrado = Seguridad.aes.cifrar(comando);
-            client.write(cifrado + "\n");
-            client.end();
+            // var cifrado = Seguridad.aes.cifrar(comando);
+            var updates = {};
+            updates[request.body.ip] = comando;
+            firebase.database().ref().update(updates);
             break;
 
         case 'rotateleft':
-            var net = require('net');
-            var client = net.connect(1234, request.body.ip);
-            client.on('error', function(e){
-                console.log(e);
-            });
+
             var comando = 'robotrotateleft-' + request.body.vel + '-' + request.body.tiempo;
-            var cifrado = Seguridad.aes.cifrar(comando);
-            client.write(cifrado + "\n");
-            client.end();
+            // var cifrado = Seguridad.aes.cifrar(comando);
+            var updates = {};
+            updates[request.body.ip] = comando;
+            firebase.database().ref().update(updates);
             break;
 
         case 'movestop':
-            var net = require('net');
-            var client = net.connect(1234, request.body.ip);
-            client.on('error', function(e){
-                console.log(e);
-            });
+
             var comando = 'robotmovestop-' + request.body.vel + '-' + request.body.tiempo;
             var cifrado = Seguridad.aes.cifrar(comando);
-            client.write(cifrado + "\n");
-            client.end();
+            var updates = {};
+            updates[request.body.ip] = comando;
+            firebase.database().ref().update(updates);
             break;
 
         case 'rotateright':
-            var net = require('net');
-            var client = net.connect(1234, request.body.ip);
-            client.on('error', function(e){
-                console.log(e);
-            });
+
             var comando = 'robotrotateright-' + request.body.vel + '-' + request.body.tiempo;
-            var cifrado = Seguridad.aes.cifrar(comando);
-            client.write(cifrado + "\n");
-            client.end();
+            // var cifrado = Seguridad.aes.cifrar(comando);
+            var updates = {};
+            updates[request.body.ip] = comando;
+            firebase.database().ref().update(updates);
             break;
 
         case 'backwardleft':
-            var net = require('net');
-            var client = net.connect(1234, request.body.ip);
-            client.on('error', function(e){
-                console.log(e);
-            });
+
             var comando = 'robotbackwardleft-' + request.body.vel + '-' + request.body.tiempo;
-            var cifrado = Seguridad.aes.cifrar(comando);
-            client.write(cifrado + "\n");
-            client.end();
+            // var cifrado = Seguridad.aes.cifrar(comando);
+            var updates = {};
+            updates[request.body.ip] = comando;
+            firebase.database().ref().update(updates);
             break;
 
         case 'backward':
-            var net = require('net');
-            var client = net.connect(1234, request.body.ip);
-            client.on('error', function(e){
-                console.log(e);
-            });
+
             var comando = 'robotbackward-' + request.body.vel + '-' + request.body.tiempo;
-            var cifrado = Seguridad.aes.cifrar(comando);
-            client.write(cifrado + "\n");
-            client.end();
+            // var cifrado = Seguridad.aes.cifrar(comando);
+            var updates = {};
+            updates[request.body.ip] = comando;
+            firebase.database().ref().update(updates);
             break;
 
         case 'backwardright':
-            var net = require('net');
-            var client = net.connect(1234, request.body.ip);
-            client.on('error', function(e){
-                console.log(e);
-            });
+
             var comando = 'robotbackwardright-' + request.body.vel + '-' + request.body.tiempo;
-            var cifrado = Seguridad.aes.cifrar(comando);
-            client.write(cifrado + "\n");
-            client.end();
+            // var cifrado = Seguridad.aes.cifrar(comando);
+            var updates = {};
+            updates[request.body.ip] = comando;
+            firebase.database().ref().update(updates);
             break;
         
         case 'robotdock':
-            var net = require('net');
-            var client = net.connect(1234, request.body.ip);
-            client.on('error', function(e){
-                console.log(e);
-            });
+
             var comando = 'robotdock-' + request.body.vel + '-' + request.body.tiempo;
-            var cifrado = Seguridad.aes.cifrar(comando);
-            client.write(cifrado + "\n");
-            client.end();
+            // var cifrado = Seguridad.aes.cifrar(comando);
+            var updates = {};
+            updates[request.body.ip] = comando;
+            firebase.database().ref().update(updates);
             break;
 
         case 'robotstartoi':
-            var net = require('net');
-            var client = net.connect(1234, request.body.ip);
-            client.on('error', function(e){
-                console.log(e);
-            });
+
             var comando = 'robotstartoi-' + request.body.vel + '-' + request.body.tiempo;
-            var cifrado = Seguridad.aes.cifrar(comando);
-            client.write(cifrado + "\n");
-            client.end();
+            // var cifrado = Seguridad.aes.cifrar(comando);
+            var updates = {};
+            updates[request.body.ip] = comando;
+            firebase.database().ref().update(updates);
             break;
 
         case 'robotsafemode':
-            var net = require('net');
-            var client = net.connect(1234, request.body.ip);
-            client.on('error', function(e){
-                console.log(e);
-            });
+
             var comando = 'robotsafemode-' + request.body.vel + '-' + request.body.tiempo;
-            var cifrado = Seguridad.aes.cifrar(comando);
-            client.write(cifrado + "\n");
-            client.end();
+            // var cifrado = Seguridad.aes.cifrar(comando);
+            var updates = {};
+            updates[request.body.ip] = comando;
+            firebase.database().ref().update(updates);
             break;
 
         case 'robotstopmode':
-            var net = require('net');
-            var client = net.connect(1234, request.body.ip);
-            client.on('error', function(e){
-                console.log(e);
-            });
+
             var comando = 'robotstopmode-' + request.body.vel + '-' + request.body.tiempo;
-            var cifrado = Seguridad.aes.cifrar(comando);
-            client.write(cifrado + "\n");
-            client.end();
+            // var cifrado = Seguridad.aes.cifrar(comando);
+            var updates = {};
+            updates[request.body.ip] = comando;
+            firebase.database().ref().update(updates);
             break;
 
         case 'stopstreaming':
-            var net = require('net');
-            var client = net.connect(1234, request.body.ip);
-            client.on('error', function(e){
-                console.log(e);
-            });
             var comando = 'robocamstopstreaming';
-            var cifrado = Seguridad.aes.cifrar(comando);
-            client.write(cifrado + "\n");
-            client.end();
+            // var cifrado = Seguridad.aes.cifrar(comando);
+            var updates = {};
+            updates[request.body.ip] = comando;
+            firebase.database().ref().update(updates);
             break;
             
         case 'flash':
-            var net = require('net');
-            var client = net.connect(1234, request.body.ip);
-            client.on('error', function(e){
-                console.log(e);
-            });
             var comando = 'robocamflash';
-            var cifrado = Seguridad.aes.cifrar(comando);
-            client.write(cifrado + "\n");
-            client.end();
+            // var cifrado = Seguridad.aes.cifrar(comando);
+            var updates = {};
+            updates[request.body.ip] = comando;
+            firebase.database().ref().update(updates);
             break;
     }
     console.log(request.body);
