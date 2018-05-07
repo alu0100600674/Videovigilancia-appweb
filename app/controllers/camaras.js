@@ -269,7 +269,6 @@ exports.enviarComando = function (request, response) {
     switch(request.body.movimiento){
 
         case 'forwardleft':
-
             var comando = 'robotforwardleft-' + request.body.vel + '-' + request.body.tiempo;
             // var cifrado = Seguridad.aes.cifrar(comando);
             var updates = {};
@@ -278,7 +277,6 @@ exports.enviarComando = function (request, response) {
             break;
 
         case 'forward':
-
             var comando = 'robotforward-' + request.body.vel + '-' + request.body.tiempo;
             // var cifrado = Seguridad.aes.cifrar(comando);
             var updates = {};
@@ -287,7 +285,6 @@ exports.enviarComando = function (request, response) {
             break;
 
         case 'forwardright':
-
             var comando = 'robotforwardright-' + request.body.vel + '-' + request.body.tiempo;
             // var cifrado = Seguridad.aes.cifrar(comando);
             var updates = {};
@@ -296,7 +293,6 @@ exports.enviarComando = function (request, response) {
             break;
 
         case 'rotateleft':
-
             var comando = 'robotrotateleft-' + request.body.vel + '-' + request.body.tiempo;
             // var cifrado = Seguridad.aes.cifrar(comando);
             var updates = {};
@@ -305,7 +301,6 @@ exports.enviarComando = function (request, response) {
             break;
 
         case 'movestop':
-
             var comando = 'robotmovestop-' + request.body.vel + '-' + request.body.tiempo;
             var cifrado = Seguridad.aes.cifrar(comando);
             var updates = {};
@@ -314,7 +309,6 @@ exports.enviarComando = function (request, response) {
             break;
 
         case 'rotateright':
-
             var comando = 'robotrotateright-' + request.body.vel + '-' + request.body.tiempo;
             // var cifrado = Seguridad.aes.cifrar(comando);
             var updates = {};
@@ -323,7 +317,6 @@ exports.enviarComando = function (request, response) {
             break;
 
         case 'backwardleft':
-
             var comando = 'robotbackwardleft-' + request.body.vel + '-' + request.body.tiempo;
             // var cifrado = Seguridad.aes.cifrar(comando);
             var updates = {};
@@ -332,7 +325,6 @@ exports.enviarComando = function (request, response) {
             break;
 
         case 'backward':
-
             var comando = 'robotbackward-' + request.body.vel + '-' + request.body.tiempo;
             // var cifrado = Seguridad.aes.cifrar(comando);
             var updates = {};
@@ -341,7 +333,6 @@ exports.enviarComando = function (request, response) {
             break;
 
         case 'backwardright':
-
             var comando = 'robotbackwardright-' + request.body.vel + '-' + request.body.tiempo;
             // var cifrado = Seguridad.aes.cifrar(comando);
             var updates = {};
@@ -350,7 +341,6 @@ exports.enviarComando = function (request, response) {
             break;
         
         case 'robotdock':
-
             var comando = 'robotdock-' + request.body.vel + '-' + request.body.tiempo;
             // var cifrado = Seguridad.aes.cifrar(comando);
             var updates = {};
@@ -359,7 +349,6 @@ exports.enviarComando = function (request, response) {
             break;
 
         case 'robotstartoi':
-
             var comando = 'robotstartoi-' + request.body.vel + '-' + request.body.tiempo;
             // var cifrado = Seguridad.aes.cifrar(comando);
             var updates = {};
@@ -368,7 +357,6 @@ exports.enviarComando = function (request, response) {
             break;
 
         case 'robotsafemode':
-
             var comando = 'robotsafemode-' + request.body.vel + '-' + request.body.tiempo;
             // var cifrado = Seguridad.aes.cifrar(comando);
             var updates = {};
@@ -377,7 +365,6 @@ exports.enviarComando = function (request, response) {
             break;
 
         case 'robotstopmode':
-
             var comando = 'robotstopmode-' + request.body.vel + '-' + request.body.tiempo;
             // var cifrado = Seguridad.aes.cifrar(comando);
             var updates = {};
