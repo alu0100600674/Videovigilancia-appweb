@@ -38,9 +38,11 @@
                         </a>
                     </td>
                     <td>
-                        <a ng-click="startmov(camara._id)" class="btn btn-floating waves-effect waves-light orange hoverable">
-                            <i  class="material-icons">remove_red_eye</i>
-                        </a>
+                        <span ng-if="camara.online == false">
+                            <a ng-click="startmov(camara._id)" class="btn btn-floating waves-effect waves-light orange hoverable">
+                                <i  class="material-icons">remove_red_eye</i>
+                            </a>
+                        </span>
                     </td>
                     <td>
                         <a ng-click="delete(camara._id)" class="btn btn-floating waves-effect waves-light red hoverable">
