@@ -11,6 +11,8 @@ var bodyParser = require('body-parser');
 var errorHandler = require('errorhandler');
 var passport = require('passport');
 var nodemailer = require('nodemailer');
+var fs = require('fs');
+var https = require('https');
 
 
 var app = express();
@@ -21,6 +23,14 @@ var app = express();
 
 app.enable('view cache');
 
+// Credentials
+const privateKey = fs.readFileSync('key.pem', 'utf8');
+const certificate = fs.readFileSync('cert.pem', 'utf8');
+const credentials = {
+    key: privateKey,
+    cert: certificate,
+    passphrase: '1234'
+}
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -57,17 +67,21 @@ if ('development' == app.get('env')) {
     app.use(errorHandler());
 }
 
-var server = http.createServer(app);
+// var server = http.createServer(app);
 
 //Sample routes are in a separate module, just for keep the code clean
 routes = require('./routes/routes')(app);
 //Connect to the MongoDB test database
 mongoose.connect('mongodb://localhost/atlas_db');
 
-server.listen(app.get('port'), function () {
-    console.log('Express server listening on port ' + app.get('port'));
-});
+// server.listen(app.get('port'), function () {
+//     console.log('Express server listening on port ' + app.get('port'));
+// });
 
+var serverSecure = https.createServer(credentials, app);
+serverSecure.listen(8001, () => {
+    console.log('Express server listening on port 8001');
+});
 
 app.all('/*', function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
