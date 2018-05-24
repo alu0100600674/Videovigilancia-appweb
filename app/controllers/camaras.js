@@ -229,15 +229,11 @@ exports.startstreaming = function (request, response) {
         if (err) return response.send(error);
         if (Utilities.isEmpty(camara)) return response.send(error);
 
-        var net = require('net');
-        var client = net.connect(1234, camara.ip);
-        client.on('error', function(e){
-            console.log(e);
-        });
         var comando = 'robocamstartstreaming';
-        var cifrado = Seguridad.aes.cifrar(comando);
-        client.write(cifrado + "\n");
-        client.end();
+        // var cifrado = Seguridad.aes.cifrar(comando);
+        var updates = {};
+        updates[camara.ip] = comando;
+        firebase.database().ref().update(updates);
 
         response.send(ok);
     });
@@ -250,15 +246,11 @@ exports.startmov = function (request, response) {
         if (err) return response.send(error);
         if (Utilities.isEmpty(camara)) return response.send(error);
 
-        var net = require('net');
-        var client = net.connect(1234, camara.ip);
-        client.on('error', function(e){
-            console.log(e);
-        });
         var comando = 'robocamstartmotiondetection';
-        var cifrado = Seguridad.aes.cifrar(comando);
-        client.write(cifrado + "\n");
-        client.end();
+        // var cifrado = Seguridad.aes.cifrar(comando);
+        var updates = {};
+        updates[camara.ip] = comando;
+        firebase.database().ref().update(updates);
 
         response.send(ok);
     });
