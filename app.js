@@ -13,6 +13,7 @@ var passport = require('passport');
 var nodemailer = require('nodemailer');
 var fs = require('fs');
 var https = require('https');
+var cfg = require('./config.json');
 
 
 var app = express();
@@ -24,8 +25,8 @@ var app = express();
 app.enable('view cache');
 
 // Credentials
-const privateKey = fs.readFileSync('key.pem', 'utf8');
-const certificate = fs.readFileSync('cert.pem', 'utf8');
+const privateKey = fs.readFileSync(cfg.privatekey, 'utf8');
+const certificate = fs.readFileSync(cfg.certificate, 'utf8');
 const credentials = {
     key: privateKey,
     cert: certificate,

@@ -386,10 +386,11 @@ exports.enviarComando = function (request, response) {
 
 
 /* Send an email from contact form */
+var cfg = require('../../config.json');
 exports.contactEmail = function (request, response) {
     
-    var CONTACT_EMAIL = "";
-    var CONTACT_PASSWORD = "";
+    var CONTACT_EMAIL = cfg.email;
+    var CONTACT_PASSWORD = cfg.password;
     
     var mailOpts, smtpTrans;
         
