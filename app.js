@@ -45,7 +45,9 @@ app.use(methodOverride());
 app.use(session({
     resave: true,
     saveUninitialized: true,
-    secret: 'uwotm8'
+    secret: 'jfba8d',
+    cookie: {secure: true},
+    name: 'robocam'
 }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -73,7 +75,7 @@ if ('development' == app.get('env')) {
 //Sample routes are in a separate module, just for keep the code clean
 routes = require('./routes/routes')(app);
 //Connect to the MongoDB test database
-mongoose.connect('mongodb://localhost/atlas_db');
+mongoose.connect('mongodb://localhost/robocam_db');
 
 // server.listen(app.get('port'), function () {
 //     console.log('Express server listening on port ' + app.get('port'));
