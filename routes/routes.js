@@ -12,7 +12,7 @@ module.exports = function (app) {
 
     // Camaras
     // Vistas
-    app.get('/live', camaras.index); // index de todas las cámaras en directo
+    app.get('/live', sessionController.loginRequired, camaras.index); // index de todas las cámaras en directo
     app.get('/addcamara', sessionController.loginRequired, camaras.addindex); // vista para añadir camara
     app.get('/listcamaras', sessionController.loginRequired, camaras.listindex); // vista para añadir camara
     app.get('/contact', camaras.contactindex); // Contacto
